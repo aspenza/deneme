@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>LedgePro Elite | Kurumsal Muhasebe Platformu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="noise"></div>
+    <div class="layout">
+      <aside class="sidebar glass">
+        <div class="brand">
+          <div class="logo">LP</div>
+          <div>
+            <h1>LedgePro Elite</h1>
+            <p>Finansal Kontrol Merkezi</p>
+          </div>
+        </div>
+        <nav>
+          <button class="nav-item active">Genel Bakış</button>
+          <button class="nav-item">Gelir-Gider Yönetimi</button>
+          <button class="nav-item">Fatura Takibi</button>
+          <button class="nav-item">Müşteri / Tedarikçi</button>
+          <button class="nav-item">Raporlar ve KPI</button>
+          <button class="nav-item">Bütçe Planlama</button>
+          <button class="nav-item">Vergi Takvimi</button>
+        </nav>
+        <section class="assistant-card">
+          <h3>Akıllı Finans Asistanı</h3>
+          <p>
+            Bu ay operasyonel giderler hedefin %6 üzerinde. IT lisans kaleminde
+            optimizasyon öneriliyor.
+          </p>
+          <button>Önerileri İncele</button>
+        </section>
+      </aside>
+
+      <main>
+        <header class="topbar glass">
+          <div>
+            <h2>Kurumsal Muhasebe Dashboard</h2>
+            <p>Son senkronizasyon: <span id="last-sync">--:--</span></p>
+          </div>
+          <div class="topbar-actions">
+            <input type="search" placeholder="İşlem, fatura veya müşteri ara..." />
+            <button class="primary">+ Yeni İşlem</button>
+          </div>
+        </header>
+
+        <section class="kpi-grid">
+          <article class="kpi-card glass">
+            <span>Aylık Ciro</span>
+            <h3 id="revenue">₺0</h3>
+            <small class="up">▲ %12,4 geçen aya göre</small>
+          </article>
+          <article class="kpi-card glass">
+            <span>Net Karlılık</span>
+            <h3 id="profit">₺0</h3>
+            <small class="up">▲ %8,1 trend pozitif</small>
+          </article>
+          <article class="kpi-card glass">
+            <span>Bekleyen Fatura</span>
+            <h3 id="pending">0</h3>
+            <small class="warn">● 3 tanesi 7+ gün gecikmiş</small>
+          </article>
+          <article class="kpi-card glass">
+            <span>Nakit Akışı Skoru</span>
+            <h3 id="cash">0/100</h3>
+            <small class="up">▲ Güvenli aralık</small>
+          </article>
+        </section>
+
+        <section class="content-grid">
+          <article class="panel glass">
+            <div class="panel-title-row">
+              <h3>12 Aylık Gelir / Gider Görünümü</h3>
+              <span class="chip">Gerçekleşen</span>
+            </div>
+            <canvas id="financeChart" width="880" height="340"></canvas>
+          </article>
+
+          <article class="panel glass">
+            <div class="panel-title-row">
+              <h3>Hızlı İşlem Girişi</h3>
+              <span class="chip">Canlı</span>
+            </div>
+            <form id="transactionForm" class="transaction-form">
+              <label>
+                Açıklama
+                <input type="text" id="desc" required placeholder="Örn. Kurumsal danışmanlık" />
+              </label>
+              <label>
+                Tutar (₺)
+                <input type="number" id="amount" min="1" required />
+              </label>
+              <label>
+                Tür
+                <select id="type">
+                  <option value="Gelir">Gelir</option>
+                  <option value="Gider">Gider</option>
+                </select>
+              </label>
+              <label>
+                Tarih
+                <input type="date" id="date" required />
+              </label>
+              <button type="submit" class="primary">Kaydet ve Güncelle</button>
+            </form>
+          </article>
+
+          <article class="panel glass wide">
+            <div class="panel-title-row">
+              <h3>Son Finansal Hareketler</h3>
+              <span class="chip" id="transaction-count">0 işlem</span>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Tarih</th>
+                    <th>Açıklama</th>
+                    <th>Tür</th>
+                    <th>Tutar</th>
+                    <th>Durum</th>
+                  </tr>
+                </thead>
+                <tbody id="transactionsBody"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
